@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: demo-gateway
-  namespace: your-namespace
+  name: spring-boot-gateway
+  namespace: default
 spec:
   selector:
     istio: ingressgateway
@@ -17,16 +17,16 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: demo-virtualservice
-  namespace: your-namespace
+  name: spring-boot-virtualservice
+  namespace: default
 spec:
   hosts:
   - "*"
   gateways:
-  - demo-gateway
+  - spring-boot-gateway
   http:
   - route:
     - destination:
-        host: your-service-name
+        host: spring-boot-app2
         port:
           number: 80
